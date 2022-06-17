@@ -12,6 +12,7 @@
 		http://www.springframework.org/schema/lang https://www.springframework.org/schema/lang/spring-lang.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
-
+     <!-- scope 預設 single(單一) -->
+     <bean id="hello" scope="prototype" class="com.spring.core.session01.beans.Hello"></bean>
  
 </beans>
