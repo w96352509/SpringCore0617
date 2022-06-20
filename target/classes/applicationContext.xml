@@ -71,4 +71,24 @@
    <bean id="book5" class="com.spring.core.session02.beans.Book" 
     c:name="Python" c:price="600" c:author-ref="author5" />       
           
+ <!-- Paper, Color, Size -->
+	<!-- 手動配置 Color, Size -->
+	<bean id="white" class="com.spring.core.session02.beans.Color" p:name="白色" />
+	<bean id="color" class="com.spring.core.session02.beans.Color" p:name="紅色" />
+	<bean id="a4" class="com.spring.core.session02.beans.Size" p:name="A4" />
+	<bean id="size" class="com.spring.core.session02.beans.Size" p:name="B3" />
+	
+	<!-- 自動配置 -->
+	<!-- byType 的限制: 若超過1個可以匹配的型別就會發生錯誤 -->
+	<!-- 
+	<bean id="paper1" p:id="101" autowire="byType" class="com.spring.core.session02.beans.Paper" />
+	-->
+	<!-- byName 對應 class的物件名稱name -->
+	<bean id="paper2" p:id="202" autowire="byName" class="com.spring.core.session02.beans.Paper" />
+    <bean id="paper3" p:id="303" autowire="byName" class="com.spring.core.session02.beans.WhiteA4" />
+	
+	<!-- construstor -->
+	<bean id="paper4" p:id="404" autowire="constructor" class="com.spring.core.session02.beans.Paper" />
+   
 </beans>
+

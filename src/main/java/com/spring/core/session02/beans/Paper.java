@@ -1,15 +1,15 @@
 package com.spring.core.session02.beans;
 
-public class Parper {
+public class Paper {
 	private Integer id; // 紙張編號
 	private Color color;
 	private Size size;
 
-	public Parper() {
+	public Paper() {
 
 	}
 
-	public Parper(Integer id, Color color, Size size) {
+	public Paper(Color color, Size size) {
 
 		this.id = id;
 		this.color = color;
@@ -42,7 +42,7 @@ public class Parper {
 
 	@Override
 	public String toString() {
-		return "Parper [id=" + id + ", color=" + color + ", size=" + size + "]";
+		return "Paper [id=" + id + ", color=" + color + ", size=" + size + "]";
 	}
 
 }
