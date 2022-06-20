@@ -8,8 +8,6 @@ public class Book {
 	
 	private Author author;
 
-	
-	
 	public Book() {
 		
 	}
@@ -42,6 +40,11 @@ public class Book {
 
 	public void setAuthor(Author author) {
 		this.author = author;
+	}
+
+	@Override
+	public String toString() {
+		return "Book [name=" + name + ", price=" + price + ", author=" + author + "]";
 	}
 	
 	
