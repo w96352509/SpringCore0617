@@ -14,5 +14,6 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
      <!-- scope 預設 single(單一) -->
      <bean id="hello" scope="prototype" class="com.spring.core.session01.beans.Hello"></bean>
- 
+     <bean id="lotto" scope="prototype" class="com.spring.core.session02.beans.Lotto" />
+     <bean id="lotto2" scope="singleton" class="com.spring.core.session02.beans.Lotto" />     
 </beans>
