@@ -13,7 +13,26 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
      <!-- scope 預設 single(單一) -->
-     <bean id="hello" scope="prototype" class="com.spring.core.session01.beans.Hello"></bean>
-     <bean id="lotto" scope="prototype" class="com.spring.core.session02.beans.Lotto" />
+     <bean id="hello" scope="prototype"  class="com.spring.core.session01.beans.Hello"></bean>
+     <bean id="lotto" scope="prototype"  class="com.spring.core.session02.beans.Lotto" />
      <bean id="lotto2" scope="singleton" class="com.spring.core.session02.beans.Lotto" />     
+     <bean id="author1" scope="singleton"   class="com.spring.core.session02.beans.Author" />     
+     <bean id="author2" scope="singleton"   class="com.spring.core.session02.beans.Author">
+        <!-- 方法注入 -->
+        <property name="name">
+         <value>John</value>
+        </property>
+        <property name="sex">
+         <value>M</value>
+        </property>
+        <property name="age">
+         <value>18</value>
+        </property>
+     </bean>
+     <bean id="author3" scope="singleton"   class="com.spring.core.session02.beans.Author">
+       <!-- 建構子注入 -->
+       <constructor-arg index="0" value="Mary"></constructor-arg>
+       <constructor-arg index="1" value="M"></constructor-arg>
+       <constructor-arg index="2" value="19"></constructor-arg>
+     </bean>     
 </beans>
