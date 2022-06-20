@@ -34,5 +34,15 @@
        <constructor-arg index="0" value="Mary"></constructor-arg>
        <constructor-arg index="1" value="M"></constructor-arg>
        <constructor-arg index="2" value="19"></constructor-arg>
-     </bean>     
+     </bean>
+     
+     <!-- p 方法注入(簡寫) -->
+     <bean id="author4" class="com.spring.core.session02.beans.Author" 
+           p:name="Mary"  p:age="15"  p:sex="M" />
+     
+     <!-- c 建構子注入(簡寫) -->
+     <bean id="author5" class="com.spring.core.session02.beans.Author" 
+           c:name="Mary"  c:age="15"  c:sex="M" />      
+     
+          
 </beans>
