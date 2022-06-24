@@ -201,5 +201,11 @@
 	 </entry>
 	</util:map>
 	
+	<!-- init_method / destory_method 配置 -->
+	<bean id="dbconn" init-method="init" destroy-method="destory" class="com.spring.core.session03.beans.DBConn"></bean>
+    
+    <!-- 利用 BeanFactory 建立實例 -->
+    <bean id="carFactory" class="com.spring.core.session03.beans.CarFactory"></bean>
+
 </beans>
 
