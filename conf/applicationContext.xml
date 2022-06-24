@@ -90,5 +90,87 @@
 	<!-- construstor -->
 	<bean id="paper4" p:id="404" autowire="constructor" class="com.spring.core.session02.beans.Paper" />
    
+    <!-- 引用外部資源 part I -->
+    <!--  
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="data.properties" />
+	</bean>
+	-->
+	
+	<!-- 引用外部資源 part II -->
+	<context:property-placeholder location="data.properties"/>
+	<!-- 建立 Clazz 實例並使用外部資源來注入物件屬性資料 -->
+	<bean id="clazz1"
+		  p:id="1"
+		  p:name="${clazz.name}"
+		  p:credit="${clazz.credit}"	 
+		  class="com.spring.core.session03.beans.Clazz" />
+	
+	<bean id="clazz2"
+		  p:id="2"
+		  p:name="English"
+		  p:credit="2"	 
+		  class="com.spring.core.session03.beans.Clazz" />
+	
+	<bean id="clazz3"
+		  p:id="3"
+		  p:name="Math"
+		  p:credit="3"	 
+		  class="com.spring.core.session03.beans.Clazz" />	
+	
+	<!-- 學生配置1 -->
+	<bean id="student1" p:id="1" p:name="John" class="com.spring.core.session03.beans.Student">
+	 <!-- Set 集合配置 -->
+	  <property name="clazzs">
+	   <set>
+	    <ref bean="clazz1"/>
+	    <ref bean="clazz2"/>
+	    <ref bean="clazz3"/>
+	   </set>
+	  </property>
+	</bean>
+	
+	<!-- 學生配置1 -->
+	<bean id="student2" p:id="2" p:name="Mary" class="com.spring.core.session03.beans.Student">
+	 <!-- Set 集合配置 -->
+	  <property name="clazzs">
+	   <set>
+	    <ref bean="clazz1"/>
+	    <ref bean="clazz3"/>
+	   </set>
+	  </property>
+	</bean> 	    
+	
+	<!-- 講師配置 -->
+	<bean id="teacher1" p:id="101" p:name="Bob" class="com.spring.core.session03.beans.Teacher">
+	 <!-- Set 配置 -->
+	 <property name="students">
+	  <set>
+	   <ref bean="student1"/>
+	   <ref bean="student2"/>
+	  </set>
+	 </property>
+	 
+	 <!-- List 配置 -->
+	 <property name="subjects">
+	  <list>
+	   <value>Program</value>
+	   <value>English</value>
+	  </list>
+	 </property>
+	 
+	 <!-- Map 配置 (每一個元素 entry -> Key / Value) -->
+	 <property name="salary">
+	  <map>
+	   <entry key="base">
+	    <value>50000</value>
+	   </entry>
+	   <entry key="addition">
+	    <value>20000</value>
+	   </entry>
+	  </map>
+	 </property>
+	</bean>
+	
 </beans>
 
