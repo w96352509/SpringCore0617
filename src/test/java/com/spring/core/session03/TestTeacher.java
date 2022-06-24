@@ -18,7 +18,9 @@ public class TestTeacher {
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
 		Clazz clazz = ctx.getBean("clazz1",Clazz.class);
 		Teacher teacher1 = ctx.getBean("teacher1" , Teacher.class);
+		Teacher teacher2 = ctx.getBean("teacher2" , Teacher.class);
 		System.out.println(teacher1);
+		System.out.println(teacher2);
 		// 請問 teacher1 讀學生每個人平均是幾分
 		teacher1.getStudents()
 		        .stream()
