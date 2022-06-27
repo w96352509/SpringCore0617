@@ -1,0 +1,43 @@
+流程範例 : User(M) / UserController(C) / UserService im UserServiceImpl(S) / UserDao im UserDaoImpl(R)
+建立 interface 好處(含兩個以上的實作) : 
+                      Serivce 可能有很多的 Controller 使用 
+                      Repository 可能有多 Service 使用
+                      Controller 幾乎都是一對一則不用 interface
+
+Spring 常用註解
+ - @Controller : 控制層
+ - @Component  : 讓 Spring 管理物件
+ - @Servic     : 服務層 -> @Component @interface Service
+ - @Repository : Dao 層 -> @Component @interface Repository
+ - @Resource   : 資源類(J2EE)
+ - @Autowired  : 資源類(Spring) + name 需 @Qualifier
+ - @Properites("classpath:") + @Value(value="${}")
+   - #{} // 使用 Spring EL
+   - List : @Value(value = "#{'${}'.split('分隔符號')}")
+   - Map  : @Value(value = "#{${}}")
+------------------------------------------------------- 
+ - @Bean
+ - @Qualifier
+ - @Required
+ - @Value 預設值
+    - @Value(value = "") // 自動轉型
+    - 多值使用 Spring EL 語言 : @
+       @Value(value = "#{${物件名稱:{'值','值'}}}")
+      Map : @Value(value = "#{${物件名稱:{'K':'V','K':'V'}}}") 
+- @Scope
+-------------------------------------------------------
+@Component  
+ <!-- 掃描配置讓 spring 管理 -->
+ // 此專案下的 Bean 有下 @ 都被 Spring 管理     
+ <context:component-scan base-package="com.spring.core.session03"></context:component-scan>
+
+1. xml 配置(中央)
+2. @   配置(地方)
+
+MVC : User <-> C <--> S <--> Dao() <-> DB
+              組合   驗證    存入DB
+
+-------------------------------------------------------
+代理模式 : 不直接觸碰原物件 , 透過代理操作 , 讓業務方法與功用方法分開
+ - 靜態 -> 代理(公共邏輯 + 代理執行各邏輯) -> 透過代理宣告物件
+ - 動態
