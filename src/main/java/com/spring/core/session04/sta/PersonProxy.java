@@ -1,5 +1,7 @@
 package com.spring.core.session04.sta;
 
+import java.util.Random;
+
 // 靜態代理
 // 代理執行任務
 public class PersonProxy implements Person {
@@ -12,9 +14,20 @@ public class PersonProxy implements Person {
 
 	@Override
 	public void work() {
-		// 公用邏輯
+		// before : 公用邏輯
 		System.out.println("戴口罩");
 		// 代理執行方法
-		person.work();
+		try {
+			person.work();
+		
+		} catch (Exception e) {
+			// 例外共用方法
+		    System.out.println("去買口罩");
+		    // 遞迴
+		    person.work();
+		}
+		
+		// end 
+		System.out.println("脫口罩");
 	}
 }
