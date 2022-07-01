@@ -10,7 +10,9 @@ public class MyLogger {
 	}
 
 	// Exception 例外異常通知
-
+	public static void throwing(Class cls, String errorMessage) {
+		System.out.printf("異常通知: %s , %s  \n", cls, errorMessage);
+	}
 	// End 後置通知(業務方法調用完畢後執行)
 	public static void end(Class cls, String methodName, Object result) {
 		System.out.printf("後置通知: %s , %s , result=%s", cls, methodName, result);
