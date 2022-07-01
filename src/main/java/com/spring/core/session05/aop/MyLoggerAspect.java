@@ -18,8 +18,9 @@ public class MyLoggerAspect {
 	// joinpoint 連結點
 	// 切入點表達式 Spring EL : execution(..)
 	//@Before(value = "execution(public Integer com.spring.core.session05.aop.MathCalcImpl.add(Integer,Integer));")
+	// * com.spring.core * 無視回傳值
 	// *任意方法 ..任意參數(但不會取空參數) 
-	@Before(value = "execution(public Integer com.spring.core.session05.aop.MathCalcImpl.*(..));") 
+	@Before(value = "execution(* com.spring.core.session05.aop.MathCalcImpl.*(..));") 
 	public void beforeAdvice(JoinPoint joinPoint) {
 		// 取得連接點方法(方法簽章)名稱
 		String methodName = joinPoint.getSignature().getName();
