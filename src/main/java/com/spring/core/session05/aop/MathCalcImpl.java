@@ -1,5 +1,8 @@
 package com.spring.core.session05.aop;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class MathCalcImpl implements MathCalc {
 
 	@Override
