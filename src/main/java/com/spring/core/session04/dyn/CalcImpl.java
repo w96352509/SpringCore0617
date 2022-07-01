@@ -10,7 +10,7 @@ public class CalcImpl implements Calc {
 
 	@Override
 	public int div(int x, int y) {
-		int result = x * y;
+		int result = x / y;
 		return result;
 	}
 
