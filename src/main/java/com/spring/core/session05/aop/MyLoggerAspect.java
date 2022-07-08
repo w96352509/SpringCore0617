@@ -66,7 +66,7 @@ public class MyLoggerAspect {
 	*/
 	// 環繞通知
 	// 注意: 啟用環繞通知前, 建議先將其他通知關閉
-	@Around(value = "pt()")
+	@Around(value = "pt()") // 設定哪個切入點要切入
 	public Object aroundAdvice(ProceedingJoinPoint joinPoint) {
 		Object result = null;
 		String methodName = joinPoint.getSignature().getName();
