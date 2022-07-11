@@ -1,25 +1,27 @@
 package com.spring.core.session06;
 
+import java.util.List;
+import java.util.Map;
+
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.mchange.v2.c3p0.ComboPooledDataSource;
+import com.spring.core.session06.template.EmpDao;
 
-public class JDBCTest {
+public class TemplateTest1 {
 
 	@Test
 	public void test() {
+		// XML 配置
+		// ApplicationContext ctx = new ClassPathXmlApplicationContext("jdbc-config.xml");
 		
+		// JAVA 配置
 		ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringJDBCConfig.class);
-		ComboPooledDataSource cp = ctx.getBean("dataSource" , ComboPooledDataSource.class);
-		try {
-			System.out.println(cp.getConnection());
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		  System.out.println("連線成功");
+		EmpDao empDao = ctx.getBean("empDao",EmpDao.class);
+		List<Map<String, Object>> emps = empDao.queryAll();
+		System.out.println(emps);
 	}
 	
 }
