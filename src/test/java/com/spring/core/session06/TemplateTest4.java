@@ -14,7 +14,7 @@ public class TemplateTest4 {
 		// 使用 xml 配置
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("jdbc-config.xml");
 		EmpDao empDao = ctx.getBean("empDao", EmpDao.class);
-		//int[] rowcounts = empDao.addTwo("z03", 3, "z01", 1);
+		int[] rowcounts = empDao.addTwo("z03", 3, "z05", 5);
 		//System.out.println(Arrays.toString(rowcounts));
 		System.out.println(empDao.queryAll());
 		
