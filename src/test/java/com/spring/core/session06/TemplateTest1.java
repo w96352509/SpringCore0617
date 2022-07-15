@@ -49,9 +49,8 @@ public class TemplateTest1 {
 		//int rowcount = empDao.updateById(18,"test18", 18);
 		//int rowcount = empDao.deleteById(18);
 		//System.out.println(Arrays.toString(rowcount));
-	    System.out.println(empDao.getEmpById(1));
-	    //System.out.println(ename);
-	    System.out.println(empDao.queryAllEmp());
+	    //System.out.println(ename);t
+	    empDao.queryEmpAndJob().stream().forEach(System.out::println);
 	    //System.out.println(empDao.queryAllEmp2());
 	    
 	    
