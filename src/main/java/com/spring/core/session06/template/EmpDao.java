@@ -17,6 +17,9 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import com.spring.core.session06.entity.Emp;
@@ -148,10 +151,40 @@ public class EmpDao {
 		ResultSetExtractor<List<Job>> resultSetExtractor = 
 				JdbcTemplateMapperFactory
 				.newInstance()
-				.addKeys("jid") // 主鍵
+				.addKeys("jid") // 主鍵(primary key)
 				.newResultSetExtractor(Job.class);
 		return jdbcTemplate.query(sql, resultSetExtractor);
 	}
 	
+	// 同時新增兩筆資料
+	public int[] addTwo(String ename1 , Integer age1 , String ename2 , Integer age2 ) {
+		int[] rowcount = new int[2];
+	    // 建立事務管理 TransactionManager
+		DataSourceTransactionManager transactionManager = new DataSourceTransactionManager(dataSource);
+		
+		// 定義 TransactionDefinition 
+		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+		// 設定交易傳播
+		def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
+		
+		// 交易狀態
+		TransactionStatus status = transactionManager.getTransaction(def);
+		try {
+			// 資料庫預讀(不完全存入)
+			String sql = "insert into emp(ename , age) values(?,?)";
+		    rowcount[0] = jdbcTemplate.update(sql,ename1,age1);
+		    rowcount[1] = jdbcTemplate.update(sql,ename2,age2);	
+		} catch (Exception e) {
+			// 回滾
+			transactionManager.rollback(status);
+		    e.printStackTrace();
+		    System.out.println("false");
+		    return null;
+		}
+		    // 正式完工
+		    transactionManager.commit(status);
+		    System.out.println("ture");
+		    return rowcount;
+	  }
 	
 }
