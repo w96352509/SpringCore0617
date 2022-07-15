@@ -20,6 +20,7 @@ import org.springframework.stereotype.Repository;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import com.spring.core.session06.entity.Emp;
+import com.spring.core.session06.entity.Job;
 
 // Dao = Data Access Object (資料存取物件)
 
@@ -135,11 +136,22 @@ public class EmpDao {
 		ResultSetExtractor<List<Emp>> resultSetExtractor = 
 				 JdbcTemplateMapperFactory
 				 .newInstance()
-				 .addKeys("eid")
+				 .addKeys("eid") // (單)主鍵
 				 .newResultSetExtractor(Emp.class);
 		return jdbcTemplate.query(sql, resultSetExtractor);
-		
-	   
 	}
+	
+	public List<Job> queryJobsAndEmp(){
+		String sql ="select  j.jid ,j.jname ,j.eid, "
+				   +"e.eid as emp_eid , e.ename as emp_ename , e.age as emp_age , e.createtime as emp_createtime "
+				   +"from job j left join emp e on e.eid = j.eid ";
+		ResultSetExtractor<List<Job>> resultSetExtractor = 
+				JdbcTemplateMapperFactory
+				.newInstance()
+				.addKeys("jid") // 主鍵
+				.newResultSetExtractor(Job.class);
+		return jdbcTemplate.query(sql, resultSetExtractor);
+	}
+	
 	
 }
