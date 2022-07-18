@@ -27,7 +27,8 @@ public class BookServiceImpl implements BookService {
 	 *   
 	 *   Propagation.MANDATORY      : 當前方法必須運行在事務中 , 若無則拋出異常
 	 *   Propagation.NEVER          : 當前方法不應該運行在事務中 , 若在事務中則拋出異常
-	 * */
+	 *   Propagation.NESTED         : 如果有事物在運行 , 當前方法必須嵌套在事務中 , 否則新建一個事務 
+	 */
 	@Override
 	public void buyOne(Integer wid, Integer bid) throws InsufficientAmount, InsufficientQuantity {
 		// 減去一本庫存
