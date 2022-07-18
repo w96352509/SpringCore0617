@@ -5,23 +5,16 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.spring.core.session07.tx.controller.BookController;
-import com.spring.core.session07.tx.dao.BookDao;
-import com.spring.core.session07.tx.exception.InsufficientAmount;
-import com.spring.core.session07.tx.exception.InsufficientQuantity;
 
-public class BookTest {
-
+public class TestBook2 {
 	@Test
-	public void test() throws InsufficientQuantity , InsufficientAmount {
+	public void test() {
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("jdbc-config.xml");
 		BookController bookController = ctx.getBean(BookController.class);
-	    // (wid , bid)
 		try {
-			bookController.buyBook(1, 1);
+			bookController.buyBooks(2,2,3); // wid, bid
 		} catch (Exception e) {
-			System.out.println(e);
+			 System.out.println(e);
 		}
-		
 	}
-	
 }

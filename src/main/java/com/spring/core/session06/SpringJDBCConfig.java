@@ -18,10 +18,10 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 // JDBC Java 配置
 
 @Configuration // 表示此類為一個配置檔
-@ComponentScan(basePackages = "com.spring.core.session06")
-// @ComponentScan // 預設會掃描此類的所在位置
+//@ComponentScan(basePackages = "com.spring.core.session06")
+@ComponentScan // 預設會掃描此類的所在位置
 @PropertySource(value = { "classpath:db.properties" }, ignoreResourceNotFound = true) // 如找不到呼略
-@EnableTransactionManagement
+// @EnableTransactionManagement
 public class SpringJDBCConfig {
 
 	@Autowired
