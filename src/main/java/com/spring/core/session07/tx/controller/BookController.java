@@ -6,12 +6,16 @@ import org.springframework.stereotype.Controller;
 import com.spring.core.session07.tx.exception.InsufficientAmount;
 import com.spring.core.session07.tx.exception.InsufficientQuantity;
 import com.spring.core.session07.tx.service.BookService;
+import com.spring.core.session07.tx.service.ManyBookService;
 
 @Controller
 public class BookController {
 
 	@Autowired
 	private BookService bookService;
+	
+	@Autowired
+	private ManyBookService manyBookService;
 	
 	public void buyBook(Integer wid , Integer bid) {
 		try {
@@ -29,7 +33,7 @@ public class BookController {
 	
 	public void buyBooks(Integer wid , Integer... bids) {
 		try {
-			bookService.buyMany(wid, bids);
+			manyBookService.buyMany(wid, bids);
 		} catch (InsufficientAmount e) {
 			e.printStackTrace();
 			System.out.println("庫存不足 :" + e);
