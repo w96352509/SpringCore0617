@@ -24,7 +24,7 @@ public class BookServiceImpl implements BookService {
 	   System.out.println("購買書名:" + bookDao.getName(bid));
 	   System.out.println("購買價格:" + price);
 	   System.out.println("剩餘數量:" + bookDao.getStockAmount(bid));
-	   System.out.println("剩餘金額:" + bookDao.getWallentMoney(wid));  
+	   System.out.println("購買者:"+bookDao.getWallentName(wid)+"剩餘金額:" + bookDao.getWallentMoney(wid));  
 	}
 
 

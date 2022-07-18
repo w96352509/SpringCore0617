@@ -62,6 +62,12 @@ public class BookDaoImpl implements BookDao {
 	    String sql = "select bname from book where bid = ?";
 		return jdbcTemplate.queryForObject(sql,String.class,bid);
 	}
+
+	@Override
+	public String getWallentName(Integer wid) {
+		String sql ="select wname from wallet where wid=?";
+		return jdbcTemplate.queryForObject(sql,String.class, wid);
+	}
 	
 	
 }
