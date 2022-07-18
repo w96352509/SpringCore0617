@@ -17,7 +17,9 @@ public class BookServiceImpl implements BookService {
 	@Autowired
 	private BookDao bookDao;
 	
-	@Transactional(propagation = Propagation.REQUIRES_NEW , isolation = Isolation.READ_COMMITTED) // DEFAULT 看資料庫本身
+	@Transactional(propagation = Propagation.REQUIRES_NEW , 
+			      rollbackFor = {InsufficientAmount.class , InsufficientAmount.class , InsufficientQuantity.class}, 
+			      timeout = 3) // DEFAULT 看資料庫本身
 	/*   // 事務 = @tx 方法 / 掛起 = 不用
 	 *   Propagation.REQUIRED(預設) : 如果有事務在運行 , 當前方法就在該事務運行,否則就啟動新的事物,並在自己得事務中運行
 	 *   
@@ -37,14 +39,25 @@ public class BookServiceImpl implements BookService {
 	 *   Isolation.READ_UNCOMMITTED 讀未提交 : 會發生髒讀(針對欄位資料)
 	 *   Isolation.READ_COMMITTED   讀已提交 : 不可重複讀(針對欄位資料)
 	 *   Isolation.REPEATABLE_READ  可重複讀 : 幻讀 > 其他人不可以針對指定資料列 CRUD (針對列(多個欄位))
-	 *   Isolation.SERIALIZABLE     序列化   : 效能低 , 消耗大 , 簡單解決以上所有問題 , 實務上不建議使用(針對表)  
-	 *    
+	 *   Isolation.SERIALIZABLE     序列化　 : 效能低 , 消耗大 , 簡單解決以上所有問題 , 實務上不建議使用(針對表)  
+	 *   
+	 *   拋出 RuntimeException 會自動 rollback
+	 *   拋出 Exception        則必須自自訂 rollbackFor={Exception.class}; 
 	 */
 	
 	@Override
 	public void buyOne(Integer wid, Integer bid) throws InsufficientAmount, InsufficientQuantity {
 		// 減去一本庫存	
 		bookDao.updateStock(bid, 1);
+		/*
+		try {
+			// timeout 測試 
+			// Thread.sleep(4000);
+		} catch (Exception e) {
+			
+		}
+		*/
+		
 		// 取得書籍價格
 		Integer price = bookDao.getPrice(bid);
 		// 減去錢包裡的錢
