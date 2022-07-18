@@ -21,7 +21,11 @@ public class BookServiceImpl implements BookService {
 	   Integer price = bookDao.getPrice(bid);
 	   // 減去錢包數量
 	   bookDao.updateWallet(wid , price);
-	  }
+	   System.out.println("購買書名:" + bookDao.getName(bid));
+	   System.out.println("購買價格:" + price);
+	   System.out.println("剩餘數量:" + bookDao.getStockAmount(bid));
+	   System.out.println("剩餘金額:" + bookDao.getWallentMoney(wid));  
+	}
 
 	@Override
 	public void buyMany(Integer wid, Integer... bids) throws InsufficientAmount, InsufficientQuantity {

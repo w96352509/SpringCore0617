@@ -15,7 +15,7 @@ public class BookTest {
 	public void test() throws InsufficientQuantity , InsufficientAmount {
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("jdbc-config.xml");
 		BookController bookController = ctx.getBean(BookController.class);
-		
+		bookController.buyBook(1, 1);
 	}
 	
 }

@@ -56,6 +56,12 @@ public class BookDaoImpl implements BookDao {
 		String sql = "update wallet set money = money - ? where wid =?";
 		return jdbcTemplate.update(sql, money , wid);
 	}
+
+	@Override
+	public String getName(Integer bid) {
+	    String sql = "select bname from book where bid = ?";
+		return jdbcTemplate.queryForObject(sql,String.class,bid);
+	}
 	
 	
 }
